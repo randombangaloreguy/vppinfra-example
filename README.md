@@ -66,10 +66,11 @@ Library: The libvppinfra.so library is usually located in /usr/lib/x86_64-linux-
 2. Compile the Program
 Use the following command to compile the program:
 
-bash
-Copy
-gcc -o test_vec test_vec.c -I/ws/vpp/src/ -L/ws/vpp/build-root/build-vpp_debug-native/vpp/lib/ -lvppinfra
--I/ws/vpp/src/: Specifies the directory containing the VPP headers.
+```bash
+gcc -o test_vec test_vec.c -I. -I/ws/vpp/src/ -L/ws/vpp/build-root/build-vpp_debug-native/vpp/lib/ -lvppinfra
+```
+
+-I/ws/vpp/src/:  Specifies the directory containing the VPP headers.
 
 -L/ws/vpp/build-root/build-vpp_debug-native/vpp/lib/: Specifies the directory containing the libvppinfra.so library.
 
@@ -78,61 +79,57 @@ gcc -o test_vec test_vec.c -I/ws/vpp/src/ -L/ws/vpp/build-root/build-vpp_debug-n
 Step 3: Set the Library Path
 If the libvppinfra.so library is not in a standard system library path (e.g., /usr/lib), you need to set the LD_LIBRARY_PATH environment variable to include the directory containing the library:
 
-bash
-Copy
+```bash
 export LD_LIBRARY_PATH=/ws/vpp/build-root/build-vpp_debug-native/vpp/lib/:$LD_LIBRARY_PATH
+```
+
 Step 4: Run the Application
 Now, you can run the compiled application:
 
-bash
-Copy
-./test_vec
-Expected Output
-Copy
+```bash
+$ ./test_vec
 Vector elements:
 my_vector[0] = 10
 my_vector[1] = 20
 my_vector[2] = 30
+```
+
 Step 5: Debugging (Optional)
 If the program crashes or behaves unexpectedly, you can use debugging tools like gdb or valgrind to diagnose the issue.
 
 Using gdb
 Compile the program with debug symbols:
 
-bash
-Copy
+```bash
 gcc -g -o test_vec test_vec.c -I/ws/vpp/src/ -L/ws/vpp/build-root/build-vpp_debug-native/vpp/lib/ -lvppinfra
+```
 Run the program with gdb:
 
-bash
-Copy
+```bash
 gdb ./test_vec
+```
 Set breakpoints and step through the code:
 
-bash
-Copy
+```bash
 (gdb) break main
 (gdb) run
 (gdb) next
-Using valgrind
-Check for memory leaks or corruption:
-
-bash
-Copy
-valgrind ./test_vec
+```
 Step 6: Advanced Usage
 1. Embedding the Library Path
 To avoid setting LD_LIBRARY_PATH, you can embed the library path directly into the executable using the -Wl,-rpath linker flag:
 
-bash
-Copy
+```bash
 gcc -o test_vec test_vec.c -I/ws/vpp/src/ -L/ws/vpp/build-root/build-vpp_debug-native/vpp/lib/ -lvppinfra -Wl,-rpath,/ws/vpp/build-root/build-vpp_debug-native/vpp/lib/
+```
+
 2. Using pkg-config
 If VPP provides a pkg-config file, you can simplify the compilation process:
 
-bash
-Copy
+```bash
 gcc -o test_vec test_vec.c $(pkg-config --cflags --libs vppinfra)
+```
+
 Conclusion
 Using VPP's vppinfra library in an external application is straightforward once you understand the compilation and linking process. By following the steps in this article, you can leverage VPP's powerful data structures, such as vectors, in your own applications. Whether you are building network applications or need high-performance data structures, vppinfra provides a robust foundation for your projects.
 
