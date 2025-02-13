@@ -53,6 +53,7 @@ int main() {
 
     return 0;
 }
+```
 
 Step 2: Compile the Application
 To compile the application, you need to link it with the vppinfra library. Here’s how you can do it:
