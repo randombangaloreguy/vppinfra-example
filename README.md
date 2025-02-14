@@ -55,7 +55,7 @@ int main() {
 }
 ```
 
-Step 2: Compile the Application
+## Step 2: Compile the Application
 To compile the application, you need to link it with the vppinfra library. Here’s how you can do it:
 
 1. Locate the VPP Library and Headers
@@ -76,14 +76,14 @@ gcc -o test_vec test_vec.c -I. -I/ws/vpp/src/ -L/ws/vpp/build-root/build-vpp_deb
 
 -lvppinfra: Links the program with the vppinfra library.
 
-Step 3: Set the Library Path
+## Step 3: Set the Library Path
 If the libvppinfra.so library is not in a standard system library path (e.g., /usr/lib), you need to set the LD_LIBRARY_PATH environment variable to include the directory containing the library:
 
 ```bash
 export LD_LIBRARY_PATH=/ws/vpp/build-root/build-vpp_debug-native/vpp/lib/:$LD_LIBRARY_PATH
 ```
 
-Step 4: Run the Application
+## Step 4: Run the Application
 Now, you can run the compiled application:
 
 ```bash
@@ -94,7 +94,7 @@ my_vector[1] = 20
 my_vector[2] = 30
 ```
 
-Step 5: Debugging (Optional)
+## Step 5: Debugging (Optional)
 If the program crashes or behaves unexpectedly, you can use debugging tools like gdb or valgrind to diagnose the issue.
 
 Using gdb
@@ -115,7 +115,8 @@ Set breakpoints and step through the code:
 (gdb) run
 (gdb) next
 ```
-Step 6: Advanced Usage
+
+## Step 6: Advanced Usage
 1. Embedding the Library Path
 To avoid setting LD_LIBRARY_PATH, you can embed the library path directly into the executable using the -Wl,-rpath linker flag:
 
@@ -130,10 +131,11 @@ If VPP provides a pkg-config file, you can simplify the compilation process:
 gcc -o test_vec test_vec.c $(pkg-config --cflags --libs vppinfra)
 ```
 
-Conclusion
+### Conclusion
 Using VPP's vppinfra library in an external application is straightforward once you understand the compilation and linking process. By following the steps in this article, you can leverage VPP's powerful data structures, such as vectors, in your own applications. Whether you are building network applications or need high-performance data structures, vppinfra provides a robust foundation for your projects.
 
-References
+## References
 https://wiki.fd.io/view/VPP
+
 https://github.com/FDio/vpp
 
